@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "../../Container";
 
 
@@ -38,7 +39,7 @@ const Navbar = () => {
         <li><a>Item 3</a></li>
       </ul>
     </div>
-    <a className="btn btn-ghost text-2xl hidden md:block">Exclusive</a>
+    <Link to="/" className="btn btn-ghost text-2xl hidden md:block">Exclusive</Link>
   </div>
 
   <div className="navbar-center hidden md:block">
