@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom"
+import Navbar from "./components/shared/Navbar/Navbar"
 
 
 
@@ -6,7 +8,10 @@ function App() {
 
   return (
     <>
-      <h1 className='text-4xl text-red-500'>Hello Typescript</h1>
+      <Navbar/>
+      <div>
+       <Outlet/>
+      </div>
     </>
   )
 }
