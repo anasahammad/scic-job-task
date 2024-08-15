@@ -14,11 +14,11 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
   const [error, setError] = useState(false)
 
   const [search, setSearch] = useState('')
-  const [searchText, setSearchText] = useState('')
+  const [sort, setSort] = useState('name')
   
   const fetchProducts = async ()=>{
     try {
-      const response = await fetch(`http://localhost:5000/products?search=${search}`)
+      const response = await fetch(`http://localhost:5000/products?search=${search}&sort=${sort}`)
       const data = await response.json()
       setProducts(data)
       console.log(data)
@@ -32,15 +32,15 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
   useEffect(()=>{
    
     fetchProducts()
-  }, [search])
+  }, [search, sort])
 
   console.log(search)
 
   const values = {
     products,
     setSearch,
-    setSearchText,
-    searchText
+    sort,
+    setSort
   }
     return (
         <productContext.Provider value={values}>

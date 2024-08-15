@@ -8,7 +8,7 @@ import useProduct from "../hooks/useProduct";
 
 
 const Home = () => {
-  const {products} = useProduct()
+  const {products, setSort, sort} = useProduct()
     return (
         <div className="p-8">
             <Container>
@@ -19,14 +19,14 @@ const Home = () => {
                 <div className=" flex flex-col md:flex-row gap-3">
                 <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
                 {
-                    products?.map((product)=> {
+                    products?.map((product : any)=> {
                         return <ProductCard key={product.id} data={product}/>
                     })
                 }
                 </div>
 
 
-                    <SortingComponent/>
+                    <SortingComponent sort={sort} setSort={setSort}/>
 
                 </div>
             </Container>

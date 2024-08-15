@@ -1,13 +1,18 @@
 
-
-const SortingComponent = () => {
+interface SortingComponentProps{
+    sort: string;
+    setSort: (value:string)=>void;
+}
+const SortingComponent: React.FC<SortingComponentProps> = ({sort, setSort}) => {
     return (
         <div className="order-1 md:order-2 border-l-2 border-slate-500 flex flex-col">
                         <div className="w-full border-b-2 border-slate-500 py-4 px-2 flex">
                             <label htmlFor="sort">Sort By:</label>
-                            <select name="" id="sort" className="">
-                                <option value="low to high">Low to High Price</option>
-                                <option value="high to low">High to Low Price</option>
+                            <select value={sort} onChange={(e)=>{
+                                setSort(e.target.value)
+                            }} name="" id="sort" className="">
+                                <option value="priceLowToHigh">Low to High Price</option>
+                                <option value="priceHighToLow">High to Low Price</option>
                                 <option value="newest">Newest</option>
                             </select>
                         </div>

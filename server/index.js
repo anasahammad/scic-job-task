@@ -32,6 +32,7 @@ async function run() {
     const productsCollection = db.collection("products")
 
     app.get("/products", async(req, res)=>{
+      const sort = req?.query.sort;
       const search = req?.query.search || '';
       let query = {}
 
@@ -40,7 +41,19 @@ async function run() {
         query.productName = {$regex: search, $options: 'i'}
       }
       
-      const result = await productsCollection.find({productName:{$regex: search, $options: 'i'} }).toArray()
+      let sortOptions = {}
+      if (sort) {
+        if (sort === 'priceLowToHigh') {
+          sortOptions = { price: 1 };
+        } else if (sort === 'priceHighToLow') {
+          sortOptions = { price: -1 };
+        } else if (sort === 'newest') {
+          sortOptions = { creationTime: -1 }; // Assuming newest means descending order
+        } else {
+          sortOptions = { name: 1 };
+        }
+      }
+      const result = await (await productsCollection.find({productName:{$regex: search, $options: 'i'} }).sort(sortOptions).toArray());
       res.send(result)
     })
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
