@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Container from "../../Container";
+import useProduct from "../../../hooks/useProduct";
 
 
 const Navbar = () => {
+  const {search, setSearch} = useProduct()
     return (
         <div className="sticky top-0 w-full bg-slate-200 shadow-sm z-30">
             
@@ -55,7 +57,10 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-2">
     <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered w-32 md:w-auto" />
+      <input 
+       onChange={(event)=>setSearch(event?.target.value) }
+       value={search}
+      type="text" placeholder="Search" className="input input-bordered w-32 md:w-auto" />
     </div>
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

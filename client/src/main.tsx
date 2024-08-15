@@ -9,8 +9,11 @@ import {
 
  import "./index.css"; 
 import { router } from './Routes/router.tsx';
+import ProductProvider from './Providers/ProductProvider.tsx';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-   <RouterProvider router={router} /> 
+  <ProductProvider>
+  <RouterProvider router={router} /> 
+  </ProductProvider>
   </StrictMode>,
 )
