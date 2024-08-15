@@ -10,7 +10,11 @@ const ProductDetails = () => {
     return (
         <div className="p-8">
             <Container>
-                <div> {product?.productName}</div>
+                <div> 
+                {product?.productName}
+                </div>
+
+
             </Container>
            
         </div>

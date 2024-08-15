@@ -10,10 +10,10 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
-        <div className="p-[49px]">
+        <div className="p-[49px] relative aspect-square">
         <img
-          className=" "
-          src={data.productName}
+          className="object-contain  w-full h-full"
+          src={data.productImage}
           alt="Product"
         />
         </div>
@@ -46,7 +46,8 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
               <Ratings.Widget key={index} />
             ))}
           </Ratings>
-          
+          <span className="ml-2 font-poppins font-semibold">({data.reviews ? data.reviews : 0})</span>
+         
         </div>
        
       </div>
