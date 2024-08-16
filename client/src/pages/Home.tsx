@@ -10,7 +10,7 @@ import Pagination from "../components/Pagination";
 
 
 const Home = () => {
-  const {products, setSort, sort, handleCurrentPage, currentPage, handlePrev, handleNext} = useProduct()
+  const {products, setSort, sort, handleCurrentPage, currentPage, handlePrev, handleNext, } = useProduct()
 
     return (
         <div className="p-8">
@@ -19,6 +19,7 @@ const Home = () => {
                     <HomeBanner/>
                 </div>
 
+                
                 <div className=" flex flex-col-reverse md:flex-row gap-3">
 
                   {

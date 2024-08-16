@@ -11,7 +11,7 @@ const ProductDetails = () => {
         <div className="p-8">
             <Container>
                 <div> 
-                {product?.productName}
+                {product?.brand}
                 </div>
 
 

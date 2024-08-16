@@ -15,6 +15,10 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
 
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('name')
+  const [brands, setBrands] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [priceRanges, setPriceRanges] = useState<string[]>([]);
+
 
   const itemsPerpage = 10;
   const [count, setCount] = useState(0)
@@ -24,7 +28,8 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
   
   const fetchProducts = async ()=>{
     try {
-      const response = await fetch(`http://localhost:5000/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}`)
+      const response = await fetch(`http://localhost:5000/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}&brands=${brands.join(',')}&categories=${categories.join(',')}&priceRanges=${priceRanges.join(',')}`)
+
       const data = await response.json()
       setProducts(data.products)
       setCount(data.totalDocuments)
@@ -68,7 +73,14 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
     handleCurrentPage,
     currentPage,
     handlePrev,
-    handleNext
+    handleNext,
+    brands,
+    setBrands,
+    categories,
+    setCategories,
+    priceRanges,
+    setPriceRanges,
+    fetchProducts
   }
     return (
         <productContext.Provider value={values}>

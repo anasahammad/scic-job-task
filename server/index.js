@@ -36,8 +36,16 @@ async function run() {
       const search = req?.query.search || '';
       const page = parseInt(req?.query.page  || 1);
       const limit = parseInt(req?.query.limit)
+      const brand = req.query.brands;
+      const categories = req.query.categories;
+      const priceRanges = req.query.priceRanges;
       let query = {}
-
+      if(brand) query.brand = brand;
+      if(categories) query.category = categories;
+      if (priceRanges) {
+        const [minPrice, maxPrice] = priceRanges.split('-').map(Number);
+        query.price = { $gte: minPrice, $lte: maxPrice };
+      }
       
       if(search){
         query.productName = {$regex: search, $options: 'i'}
@@ -55,7 +63,7 @@ async function run() {
           sortOptions = { name: 1 };
         }
       }
-      const products =  await productsCollection.find({productName:{$regex: search, $options: 'i'} }).sort(sortOptions).skip((page - 1) * limit).limit(limit).toArray();
+      const products =  await productsCollection.find(query).sort(sortOptions).skip((page - 1) * limit).limit(limit).toArray();
 
       const totalDocuments = await productsCollection.countDocuments()
       res.json({
