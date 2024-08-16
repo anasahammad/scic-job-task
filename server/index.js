@@ -34,6 +34,8 @@ async function run() {
     app.get("/products", async(req, res)=>{
       const sort = req?.query.sort;
       const search = req?.query.search || '';
+      const page = parseInt(req?.query.page  || 1);
+      const limit = parseInt(req?.query.limit)
       let query = {}
 
       
@@ -53,9 +55,20 @@ async function run() {
           sortOptions = { name: 1 };
         }
       }
-      const result = await (await productsCollection.find({productName:{$regex: search, $options: 'i'} }).sort(sortOptions).toArray());
-      res.send(result)
+      const products =  await productsCollection.find({productName:{$regex: search, $options: 'i'} }).sort(sortOptions).skip((page - 1) * limit).limit(limit).toArray();
+
+      const totalDocuments = await productsCollection.countDocuments()
+      res.json({
+        products,
+        totalDocuments,
+        
+      })
     })
+
+    // app.get('/count', async(req, res)=>{
+    //   const count = await 
+    //   res.send({count})
+    // })
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally { 
     // Ensures that the client will close when you finish/error

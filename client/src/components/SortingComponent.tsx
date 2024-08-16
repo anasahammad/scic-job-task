@@ -5,7 +5,7 @@ interface SortingComponentProps{
 }
 const SortingComponent: React.FC<SortingComponentProps> = ({sort, setSort}) => {
     return (
-        <div className="order-1 md:order-2 border-l-2 border-slate-500 flex flex-col">
+        <div className=" flex flex-col">
                         <div className="w-full border-b-2 border-slate-500 py-4 px-2 flex">
                             <label htmlFor="sort">Sort By:</label>
                             <select value={sort} onChange={(e)=>{
