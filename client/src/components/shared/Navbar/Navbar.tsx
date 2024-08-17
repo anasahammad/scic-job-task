@@ -3,6 +3,7 @@ import Container from "../../Container";
 import useProduct from "../../../hooks/useProduct";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const Navbar = () => {
@@ -110,8 +111,9 @@ const Navbar = () => {
           user? <li><a onClick={()=>{
             logout()
             .then(()=>{
-              alert("Logout Successful")
-              
+              toast.success("Logout Successful")
+              window.location.reload()
+              return
             })
           }}>Logout</a></li> :  <li><Link to="/login">Login</Link></li>
         }

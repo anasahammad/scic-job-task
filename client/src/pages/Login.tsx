@@ -6,9 +6,7 @@ import { FirebaseError } from "firebase/app";
 import { UserCredential } from "firebase/auth";
 import toast from "react-hot-toast";
 
-interface stateProps{
-    from?: string
-}
+
 const Login = () => {
   
     const [email, setEmail] = useState<string>('')

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { updateProfile, UserCredential } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
@@ -15,6 +15,7 @@ const Register = () => {
     const {createUser, googleLogin} = useContext(AuthContext)
 
     const navigate: NavigateFunction = useNavigate()
+    const location = useLocation()
     const handleForm = (event: React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault();
         
@@ -39,7 +40,7 @@ const Register = () => {
     const handleGoogle = ()=>{
         googleLogin()
         .then(()=>{
-            // setSuccess("Login successful")
+           
             toast.success("Login Successful")
             navigate(location?.state ? location.state : "/")
         })

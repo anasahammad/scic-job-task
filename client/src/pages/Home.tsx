@@ -20,10 +20,10 @@ const Home = () => {
                 </div>
 
                 
-                <div className=" flex flex-col-reverse md:flex-row gap-3">
+                <div className=" flex flex-col-reverse  md:flex-row   gap-3">
 
                   {
-                    products?.length > 0 ?  <div className=" flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
+                    products?.length > 0 ?  <div className=" flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                     {
                         products?.map((product : any)=> {
                             return <ProductCard key={product.id} data={product}/>
@@ -34,7 +34,7 @@ const Home = () => {
                
 
 
-                    <div className="  border-l-2 border-slate-500">
+                    <div className=" ml-4 border-l-2 border-slate-500">
                     <SortingComponent   sort={sort} setSort={setSort}/>
                     </div>
 
