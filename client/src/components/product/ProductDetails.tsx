@@ -11,17 +11,17 @@ const ProductDetails = () => {
         <div className="p-8">
             <Container>
 
-                <div className="flex justify-between px-12">
+                <div className="flex flex-col md:flex-row overflow-x-hidden justify-between md:px-12">
                 <div> 
                    <div className="aspect-square">
                    <img src={product?.productImage} alt="" className="object-contain" />
                    </div>
                 </div>
-                <div className="border space-y-5 flex-1 ml-8 px-4 ">
+                <div className=" space-y-5 flex-1 md:ml-8 md:px-4 ">
                     <div className="">
                         <h1 className="text-left text-2xl font-semibold">{product?.productName}</h1>
 
-                        <div className="flex items-center gap-2 font-poppins  text-opacity-50 mt-1">
+                        <div className="flex flex-col md:flex-row md:items-center gap-2 font-poppins  text-opacity-50 mt-1">
                         <Ratings
             rating={product.ratings}
             widgetRatedColors="rgb(251, 191, 36)"
@@ -41,6 +41,15 @@ const ProductDetails = () => {
                     <div className="font-poppins">{product?.description}</div>
 
                     <hr className=""/>
+
+                    <div className=" text-xl"><span className=" font-semibold">Category: </span>  {product?.category}</div>
+
+                    <div className=" text-xl"><span className="font-semibold ">Brand: </span>  {product?.brand}</div>
+                    
+
+                    <div className="flex   justify-center items-center">
+                        <button className="btn overflow-hidden md:btn-wide btn-outline">Buy Now</button>
+                    </div>
                 </div>
                 </div>
 
