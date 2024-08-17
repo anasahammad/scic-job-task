@@ -2,11 +2,14 @@
 import Ratings from 'react-ratings-declarative';
 import { truncateTxt } from '../../utils/truncateTxt';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
 interface ProductCardProps{
     data: any;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({data}) => {
+  const {user} = useContext(AuthContext)
     return (
         <div className="max-w-sm mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">

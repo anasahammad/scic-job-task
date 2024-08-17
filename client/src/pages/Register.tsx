@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
-import { updateProfile } from "firebase/auth";
+import { updateProfile, UserCredential } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import toast from "react-hot-toast";
 
 
 const Register = () => {
@@ -12,24 +14,24 @@ const Register = () => {
     const [photoUrl, setPhotoUrl] = useState<string>('')
     const {createUser, googleLogin} = useContext(AuthContext)
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
     const handleForm = (event: React.FormEvent<HTMLFormElement>)=>{
         event.preventDefault();
         
         console.log(name, email, password, photoUrl)
         createUser(email, password)
-        .then((result)=>{
+        .then((result: UserCredential)=>{
             console.log(result.user)
-            alert("Account Created Successfully")
+            toast.success("Account Created Successfully")
             updateProfile(result.user, {
                 displayName: name,
                 photoURL: photoUrl
             })
 
             navigate("/")
-        }).catch(error=>{
+        }).catch((error: FirebaseError)=>{
             console.log(error)
-            alert(error.message)
+            toast.error(error.message)
             return
         })
     }
@@ -38,12 +40,12 @@ const Register = () => {
         googleLogin()
         .then(()=>{
             // setSuccess("Login successful")
-            alert("Login Successful")
+            toast.success("Login Successful")
             navigate(location?.state ? location.state : "/")
         })
-        .catch(error=>{
+        .catch((error: FirebaseError)=>{
             console.log(error)
-            alert(error.message)
+            toast.error(error.message)
         })
     }
     return (

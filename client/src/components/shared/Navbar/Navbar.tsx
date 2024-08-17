@@ -21,14 +21,12 @@ const Navbar = () => {
       path: "/contact",
       title: "Contact"
     },
-    {
-      path: "/login",
-      title: "Login"
-    },
-    {
-      path: "/register",
-      title: "Register"
-    },
+     
+   !user?  {
+    path: "/login",
+    title: "Login"
+  } : ""
+    
   ]
     return (
         <div className="sticky top-0 w-full bg-slate-200 shadow-sm z-30">
@@ -80,6 +78,8 @@ const Navbar = () => {
               <Link to={link.path}>{link.title}</Link>
             </li>
             })
+
+           
           }
             </ul>
         </div>
@@ -106,12 +106,15 @@ const Navbar = () => {
         <li><p className=" font-medium">{user?.displayName}</p></li>
         
         <li><a>Settings</a></li>
-        <li><a onClick={()=>{
-          logout()
-          .then(()=>{
-            alert("Logout Successful")
-          })
-        }}>Logout</a></li>
+        {
+          user? <li><a onClick={()=>{
+            logout()
+            .then(()=>{
+              alert("Logout Successful")
+              
+            })
+          }}>Logout</a></li> :  <li><Link to="/login">Login</Link></li>
+        }
       </ul>
     </div>
   </div>

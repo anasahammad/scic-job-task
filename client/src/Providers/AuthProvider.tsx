@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, signOut, User } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,  signInWithEmailAndPassword, signInWithPopup, signOut, User, UserCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 
@@ -6,7 +6,7 @@ interface AuthProviderProps{
     children: React.ReactNode;
 }
 
-export const AuthContext = createContext(null)
+export const AuthContext = createContext<User | null>(null)
 const googleProvider = new  GoogleAuthProvider()
 const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null)
