@@ -31,9 +31,9 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
 
-    const db = await client.db("exclusive")
+    const db = client.db("exclusive")
     const productsCollection = db.collection("products")
 
     app.get("/products", async(req, res)=>{
@@ -63,7 +63,6 @@ async function run() {
         } else if (sort === 'priceHighToLow') {
           sortOptions = { price: -1 };
         } else if (sort === 'newest') {
-          sortOptions = { creationTime: -1 }; // Assuming newest means descending order
         } else {
           sortOptions = { name: 1 };
         }

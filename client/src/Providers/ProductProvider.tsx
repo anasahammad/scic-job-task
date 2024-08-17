@@ -28,7 +28,7 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
   
   const fetchProducts = async ()=>{
     try {
-      const response = await fetch(`https://exclusive-lilac.vercel.app/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}&brands=${brands.join(',')}&categories=${categories.join(',')}&priceRanges=${priceRanges.join(',')}`)
+      const response = await fetch(`https://exclusive-khaki-six.vercel.app/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}&brands=${brands.join(',')}&categories=${categories.join(',')}&priceRanges=${priceRanges.join(',')}`)
 
       const data = await response.json()
       setProducts(data.products)
