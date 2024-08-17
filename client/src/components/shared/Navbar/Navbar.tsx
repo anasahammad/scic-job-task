@@ -1,10 +1,35 @@
 import { Link } from "react-router-dom";
 import Container from "../../Container";
 import useProduct from "../../../hooks/useProduct";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 const Navbar = () => {
   const {search, setSearch} = useProduct()
+  const {user, logout} = useContext(AuthContext)
+  const navLinks = [
+    {
+      path: "/",
+      title: "Home"
+    },
+    {
+      path: "/about",
+      title: "About "
+    },
+    {
+      path: "/contact",
+      title: "Contact"
+    },
+    {
+      path: "/login",
+      title: "Login"
+    },
+    {
+      path: "/register",
+      title: "Register"
+    },
+  ]
     return (
         <div className="sticky top-0 w-full bg-slate-200 shadow-sm z-30">
             
@@ -30,15 +55,17 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
-        <li>
-          <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
+          
+         
+          {
+            navLinks.map(link=> {
+              return   <li key={link.title}>
+              <Link to={link.path}>{link.title}</Link>
+            </li>
+            })
+          }
+      
+        
       </ul>
     </div>
     <Link to="/" className="btn btn-ghost text-2xl hidden md:block">Exclusive</Link>
@@ -47,11 +74,13 @@ const Navbar = () => {
   <div className="navbar-center hidden md:block">
         <div className="w-full">
             <ul className="flex gap-6 items-center justify-around">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-                <li>Login</li>
-                <li>Add product</li>
+            {
+            navLinks.map(link=> {
+              return   <li key={link.title}>
+              <Link to={link.path}>{link.title}</Link>
+            </li>
+            })
+          }
             </ul>
         </div>
   </div>
@@ -67,20 +96,22 @@ const Navbar = () => {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src={user? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
         </div>
       </div>
+      
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
+        <li><p className=" font-medium">{user?.displayName}</p></li>
+        
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a onClick={()=>{
+          logout()
+          .then(()=>{
+            alert("Logout Successful")
+          })
+        }}>Logout</a></li>
       </ul>
     </div>
   </div>
