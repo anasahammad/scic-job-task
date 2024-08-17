@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+
 import Container from "../components/Container";
 import HomeBanner from "../components/HomeBanner";
 import ProductCard from "../components/product/ProductCard";
 import SortingComponent from "../components/SortingComponent";
 import useProduct from "../hooks/useProduct";
-import { useLoaderData } from "react-router-dom";
 import Pagination from "../components/Pagination";
 
 

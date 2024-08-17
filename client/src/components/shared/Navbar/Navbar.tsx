@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import Container from "../../Container";
 import useProduct from "../../../hooks/useProduct";
-import { useContext } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
 import toast from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
 
-
+interface NavLink {
+  path: string;
+  title: string;
+}
 const Navbar = () => {
   const {search, setSearch} = useProduct()
-  const {user, logout} = useContext(AuthContext)
-  const navLinks = [
+  const {user, logout} = useAuth()
+  const navLinks: NavLink[] = [
     {
       path: "/",
       title: "Home"
@@ -23,10 +25,7 @@ const Navbar = () => {
       title: "Contact"
     },
      
-   !user?  {
-    path: "/login",
-    title: "Login"
-  } : ""
+    ...(user ? [] : [{ path: "/login", title: "Login" }])
     
   ]
     return (
@@ -58,8 +57,8 @@ const Navbar = () => {
          
           {
             navLinks.map(link=> {
-              return   <li key={link.title}>
-              <Link to={link.path}>{link.title}</Link>
+              return   <li key={link?.title}>
+              <Link to={link?.path}>{link?.title}</Link>
             </li>
             })
           }
@@ -97,7 +96,7 @@ const Navbar = () => {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src={user? user.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
+            src={user?.photoURL || "https://source.unsplash.com/50x50/?portrai"} />
         </div>
       </div>
       

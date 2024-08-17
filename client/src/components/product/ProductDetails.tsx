@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { products } from "../../utils/products";
 import Container from "../Container";
-import Ratings from 'react-ratings-declarative';
+import { Rating } from "@mui/material";
+
 
 
 const ProductDetails = () => {
@@ -22,17 +23,7 @@ const ProductDetails = () => {
                         <h1 className="text-left text-2xl font-semibold">{product?.productName}</h1>
 
                         <div className="flex flex-col md:flex-row md:items-center gap-2 font-poppins  text-opacity-50 mt-1">
-                        <Ratings
-            rating={product.ratings}
-            widgetRatedColors="rgb(251, 191, 36)"
-            widgetDimensions="20px"
-            widgetSpacings="2px"
-            readonly
-          >
-            {[...Array(5)].map((_, index) => (
-              <Ratings.Widget key={index} />
-            ))}
-          </Ratings>
+                        <Rating value={product?.ratings} readOnly/>
           <div>({product?.reviews ? product?.reviews : 0} Reviews)</div>
                         </div>
                     </div>

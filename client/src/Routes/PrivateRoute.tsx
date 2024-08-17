@@ -1,11 +1,12 @@
 
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../Providers/AuthProvider";
-import { useContext } from "react";
+import useAuth from "../hooks/useAuth";
 
-
-const PrivateRoute = ({children}) => {
-    const {user, loading} = useContext(AuthContext)
+interface PrivateRouteProps{
+    children: React.ReactNode
+}
+const PrivateRoute: React.FC<PrivateRouteProps> = ({children}) => {
+    const {user, loading} = useAuth()
   
     if(loading){
         <div>Loading...</div>

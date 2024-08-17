@@ -10,8 +10,8 @@ interface ProductProviderProps{
 
 const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
     const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+   
+
 
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('name')
@@ -28,13 +28,13 @@ const ProductProvider: React.FC<ProductProviderProps> = ({children}) => {
   
   const fetchProducts = async ()=>{
     try {
-      const response = await fetch(`http://localhost:5000/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}&brands=${brands.join(',')}&categories=${categories.join(',')}&priceRanges=${priceRanges.join(',')}`)
+      const response = await fetch(`https://exclusive-lilac.vercel.app/products?search=${search}&sort=${sort}&limit=${itemsPerpage}&page=${currentPage}&brands=${brands.join(',')}&categories=${categories.join(',')}&priceRanges=${priceRanges.join(',')}`)
 
       const data = await response.json()
       setProducts(data.products)
       setCount(data.totalDocuments)
       console.log(data.products)
-      setLoading(false)
+      
     } catch (error) {
         console.log(error)
         

@@ -6,28 +6,36 @@ interface AuthProviderProps{
     children: React.ReactNode;
 }
 
-export const AuthContext = createContext<User | null>(null)
+export type AuthContextType = {
+    createUser: (email: string, password: string) => Promise<UserCredential>;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
+  googleLogin: () => Promise<UserCredential>;
+  logout: () => Promise<void>;
+  user: User | null;
+  loading: boolean;
+}
+export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const googleProvider = new  GoogleAuthProvider()
 const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(true)
 
-    const createUser = (email: string, password:any)=>{
+    const createUser = (email: string, password:string): Promise<UserCredential>=>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const loginUser = (email: string, password:any)=>{
+    const loginUser = (email: string, password:string): Promise<UserCredential>=>{
             setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const googleLogin = ()=>{
+    const googleLogin = () : Promise<UserCredential>=>{
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
-    const logout = ()=>{
+    const logout = (): Promise<void>=>{
         setLoading(true)
         return signOut(auth)
     }
@@ -37,7 +45,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                 console.log(currentUser)
                 setUser(currentUser)
                 setLoading(false)
+            }else{
+                setUser(null)
             }
+            setLoading(false)
         })
         return ()=>{
             unsubscribe()
@@ -49,7 +60,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         loading,
         googleLogin,
         user,
-        logout
+        logout,
+      
     }
     return (
         <AuthContext.Provider value={authInfo}>

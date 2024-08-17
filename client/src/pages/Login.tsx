@@ -1,10 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link, NavigateFunction, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Providers/AuthProvider";
-import { useContext, useState } from "react";
+
+import {  useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { UserCredential } from "firebase/auth";
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
 
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
    
-    const {loginUser, googleLogin} = useContext(AuthContext)
+    const {loginUser, googleLogin} = useAuth()
     const location = useLocation()
     const navigate: NavigateFunction = useNavigate()
     const from = location?.state || "/";

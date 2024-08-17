@@ -1,15 +1,15 @@
 
-import Ratings from 'react-ratings-declarative';
+
+import { Rating } from '@mui/material';
 import { truncateTxt } from '../../utils/truncateTxt';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProvider';
+
 interface ProductCardProps{
     data: any;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({data}) => {
-  const {user} = useContext(AuthContext)
+ 
     return (
         <div className=" mx-auto  shadow-lg rounded-sm overflow-hidden group">
       <div className="relative bg-[#F5F5F5] h-[250px] w-[270px]">
@@ -38,17 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
         </div>
         <div className="flex items-center">
          
-           <Ratings
-            rating={data.ratings}
-            widgetRatedColors="rgb(251, 191, 36)"
-            widgetDimensions="20px"
-            widgetSpacings="2px"
-            readonly
-          >
-            {[...Array(5)].map((_, index) => (
-              <Ratings.Widget key={index} />
-            ))}
-          </Ratings>
+        <Rating value={data.ratings} readOnly/>
           <span className="ml-2 font-poppins font-semibold">({data.reviews ? data.reviews : 0})</span>
          
         </div>

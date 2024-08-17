@@ -5,7 +5,12 @@ const cors = require("cors")
 const port = process.env.PORT || 5000
 
 app.use(express.json())
-app.use(cors())
+
+
+
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://exclusive-791af.web.app'],
+  }))
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
