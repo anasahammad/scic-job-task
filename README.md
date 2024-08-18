@@ -1,73 +1,74 @@
-# Fullstack E-commerce Website
+## Installation Instructions
 
-## Overview
-This is a fullstack single-page e-commerce website built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to browse, search, filter, categorize, and sort products. The application also includes user authentication using Google and Email/Password via Firebase.
+To get Exclusive  and running on your local machine, follow these steps:
 
-## Features
-- **Product Management:**
-  - Displays product details including Name, Image, Description, Price, Category, Ratings, and Creation Date/Time.
-  - Database contains over 40 dummy products.
-  
-- **Pagination:**
-  - Efficient product loading with pagination on the backend and frontend.
-  - Navigation buttons for Next and Previous pages.
-  
-- **Search:**
-  - Search functionality based on product name.
-  
-- **Categorization:**
-  - Filters products by Brand Name, Category Name, and Price Range.
-  - Allows the application of multiple filters simultaneously.
-  
-- **Sorting:**
-  - Sorting by Price (Low to High, High to Low) and Date Added (Newest First).
-  
-- **Authentication:**
-  - Google Authentication via Firebase.
-  - Email and Password Authentication via Firebase.
-  
-- **Responsive Design:**
-  - Mobile-first design ensuring full responsiveness.
-  - Consistent UI with fixed-size product cards.
-  
-- **UI Components:**
-  - Includes a Navbar with the website name/logo and relevant routes.
-  - Footer with necessary information and links.
-
-## Project Setup
-
-### Frontend
-
-1. **Navigate to the frontend directory:**
-   ```bash
-   cd client
-2. **Install Dependency:**
-  ```npm install
-
-3. **Start the development server:**
-  ```npm run dev
-
-### Frontend
-1. **Navigate to the backend directory:**
-   cd server
-  
-2. **Install dependencies:**
-  ```npm install
-3. **Environment Variables:**
-  Create a .env file in the server directory and add the following:
-  PORT=5000
-  
-  PORT=5000
-DB_USER=your_db_user
-DB_PASS=your_db_password
-FIREBASE_API_KEY=your_firebase_api_key
-FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-FIREBASE_PROJECT_ID=your_firebase_project_id
-FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-FIREBASE_APP_ID=your_firebase_app_id
-
-4. **Start the backend server:**
-   ```npm run start
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher) or yarn (v1.22 or higher)
+- Firebase account
 
 
+
+### Frontend Setup
+
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/anasahammad/scic-job-task
+    cd scic-job-task
+    ```
+
+2. **Navigate to the frontend directory:**
+    ```sh
+    cd client
+    ```
+
+3. **Install frontend dependencies:**
+    ```sh
+    npm install
+    ```
+
+4. **Set up environment variables:**
+    Create a `.env` file in the `frontend` directory and add your environment variables:
+    ```env
+    REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+    REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+    REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
+    REACT_APP_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+    REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
+    REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
+    ```
+
+5. **Run the frontend development server:**
+    ```sh
+    npm start
+    ```
+
+### Backend Setup
+
+1. **Install backend dependencies:**
+    ```sh
+    cd server
+    npm install
+    ```
+
+2. **Set up environment variables:**
+    Create a `.env` file in the `backend` directory and add your environment variables:
+    ```env
+    PORT=5000
+    MONGO_DB_URI=your_mongodb_uri
+    ```
+
+3. **Run the backend server:**
+    ```sh
+    npm start
+    ```
+
+
+### Deploy
+
+To deploy, follow the standard practices for deploying Node.js backend and React frontend applications. You can use services like Heroku, Vercel, Netlify, or Firebase Hosting.
+
+---
+
+Now, you should have FreshMart running locally on your machine.
